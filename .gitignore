@@ -1,0 +1,9 @@
+# python 
+*.pyc
+
+# sys created files
+*~
+*.swp
+Thumbs.db
+\#*#
+.#*
