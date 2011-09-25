@@ -50,6 +50,26 @@ def scrap_links(content):
     result = PATTERN_LINKS.findall(content)
     return [] if result is None else result
 
+def generate_report(crawler):
+    """
+    Function to show the bug report after all the links have been crawled
+    """
+    print '-'*60
+    print ' '*22, 'BugCrawler Report', ' '*22
+    print '-'*60
+    print 'Total links crawled: %d' % len(crawler.crawled)
+    print 'Bugs found: %d' % len(crawler.bugs)
+    if len(crawler.bugs) == 0:
+        print 'Congrats!'
+    else:
+        for link, bugs in crawler.bugs:
+            print link, ':'
+            for b in bugs:
+                print ' '*4, '|--', b
+        print 'Oops! Might want get back to more bug fixing!'
+    print '-'*60
+        
+
 class BugCrawler(object):
     """
     The main class for maintaining the state of scrapped links,
@@ -94,8 +114,8 @@ class BugCrawler(object):
                 current = self.links.pop()
             except KeyError:
                 current = None
-        print 'Following are the errors'
-        print self.bugs
+        print 'Done..'
+        generate_report(self)
 
     def get_html_content(self, link):
         """
