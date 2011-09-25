@@ -85,8 +85,6 @@ class BugCrawler(object):
         print 'Crawling..'
         while current:
             # self.brute_force_debug(current)
-            if self.is_crawled(current):
-                continue
             content = self.get_html_content(current)
             bugs = scrap_bugs(content, log_inline=True)
             if len(bugs):
