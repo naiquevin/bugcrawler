@@ -1,5 +1,5 @@
 import unittest
-from bugcrawler import BugCrawler
+from bugcrawler import BugCrawler, scrap_bugs
 
 class BugCrawlerTest(unittest.TestCase):
     
@@ -15,7 +15,7 @@ class BugCrawlerTest(unittest.TestCase):
         self.assertTrue(crawler.is_external_link('http://www.google.com'))
         self.assertTrue(crawler.is_external_link('https://www.google.com'))
 
-    def test_scrap_errors(self):
+    def test_scrap_bugs(self):
         html = """
         <b>Notice</b>: Undefined index: information_id in <b>/var/www/gr8menus/catalog/controller/information/information.php</b> on line <b>57</b><?xml version="1.0" encoding="UTF-8"?> 
         <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
@@ -25,9 +25,8 @@ class BugCrawlerTest(unittest.TestCase):
         <title>Information Page Not Found!</title>
         <base href="http://184.106.134.49/gr8menus/" />
         """
-        crawler = BugCrawler('http://184.106.134.49/gr8menus/')
-        errors = crawler.scrap_errors(html)
-        self.assertTrue(errors)
+        bugs = scrap_bugs(html)
+        self.assertTrue(bugs)
         
 
 if __name__ == '__main__':
