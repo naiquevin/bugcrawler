@@ -8,11 +8,13 @@ It will take an url as the input to start with and crawl it to find errors.
 Also, while being at it, it will accumulate a set of other internal urls to 
 crawl and loop over until the entire application is checked.
 
-I know its a bit wierd but it works for me!
+I know its a bit weird but it works for me!
 
 ## Usage: 
 
-python bugcrawler url
+```bash
+$ python bugcrawler url
+```
 
 ## Todos
 
