@@ -127,6 +127,9 @@ class BugCrawler(object):
                     'User-Agent': 'Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11'
                     })
             content = urllib2.urlopen(req).read()
+        except urllib2.URLError:
+            print 'Could not establish a connection to %s. Please check your network connection.' % link
+            exit(1)
         except urllib2.HTTPError, e:
             # we will fetch html content of an error page too
             content = e.fp.read()
