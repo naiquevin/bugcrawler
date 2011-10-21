@@ -144,7 +144,7 @@ class BugCrawler(object):
         in the context of this script only.)
         """
         invalid = ['#','!#']
-        return (not link in invalid and not link.startswith('#'))
+        return (not link in invalid and not link.startswith('#') and not link.startswith('mailto:'))
 
     def is_external_link(self, link):
         """
