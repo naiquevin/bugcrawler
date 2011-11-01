@@ -140,19 +140,17 @@ class BugCrawler(object):
 
     def is_valid(self, link):
         """
-        Check if the link is valid or not (
-        in the context of this script only.)
+        Check if the link is worth crawling or not (in the context of this script only.)
         """
         invalid = ['#','!#']
-        return (not link in invalid and not link.startswith('#') and not link.startswith('mailto:'))
+        return (not link in invalid and not link.startswith(('#', 'mailto:', 'javascript:')))
 
     def is_external_link(self, link):
         """
-        Check whether the url points to an external site
-        (To be discarded for the requirement of this script)
+        Check whether the url points to an external site (Urls to be ignored)
         """
         return (not link.startswith(self.app_base_url)
-                and (link.startswith('http://') or link.startswith('https://')))
+                and (link.startswith(('http://', 'https://'))))
 
     def is_crawled(self, link):
         """
