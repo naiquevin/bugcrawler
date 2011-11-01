@@ -13,7 +13,7 @@ I know its a bit weird but it works for me!
 ## Usage: 
 
 ```bash
-$ python bugcrawler url
+$ python bugcrawler.py url
 ```
 
 ## Todos
