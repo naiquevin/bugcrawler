@@ -7,9 +7,7 @@ from urlparse import urlparse
 
 PATTERN_LINKS = re.compile(r'<a\s*href=[\'"](.+?)[\'"].*?>')
 
-PHP_ERRORS = ['(<b>Warning</b>\s?:\s?.* on line <b>\d+</b>)', 
-              '(<b>Fatal Error</b>\s?:\s?.* on line <b>\d+</b>)', 
-              '(<b>Notice</b>\s?:\s?.* on line <b>\d+</b>)']
+PHP_ERRORS = ['(<b>Warning|Fatal Error|Notice</b>\s?:\s?.* on line <b>\d+</b>)']
 
 PHP_ERROR_PATTERNS = [re.compile(x, re.I) for x in PHP_ERRORS]
 
