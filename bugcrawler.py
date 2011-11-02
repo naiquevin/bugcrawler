@@ -7,9 +7,10 @@ from urlparse import urlparse
 
 PATTERN_LINKS = re.compile(r'<a\s*href=[\'"](.+?)[\'"].*?>')
 
-PHP_ERRORS = ['(<b>Warning|Fatal Error|Notice</b>\s?:\s?.* on line <b>\d+</b>)']
+PHP_ERRORS = ['(<b>Warning|Fatal Error|Notice</b>\s?:\s?.* on line <b>\d+</b>)',
+              '(Warning|Fatal Error|Notice\s?:\s?.* on line <i>\d+</i>)'] # when using xdebug + html errors enabled
 
-PHP_ERROR_PATTERNS = [re.compile(x, re.I) for x in PHP_ERRORS]
+PHP_ERROR_PATTERNS = [re.compile(x) for x in PHP_ERRORS]
 
 def scrap_bugs(content, log_inline=False):
     """
