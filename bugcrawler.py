@@ -141,8 +141,9 @@ class BugCrawler(object):
         """
         Check if the link is worth crawling or not (in the context of this script only.)
         """
-        invalid = ['#','!#']
-        return (not link in invalid and not link.startswith(('#', 'mailto:', 'javascript:')))
+        invalid_prefix = ('#','!#', 'mailto:', 'javascript:')
+        invalid_suffix = ('.png', '.jpg', '.jpeg', '.gif', '.pdf', '.zip')
+        return (not link.startswith(invalid_prefix) and not link.endswith(invalid_suffix))
 
     def is_external_link(self, link):
         """

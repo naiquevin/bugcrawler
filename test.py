@@ -11,9 +11,15 @@ class BugCrawlerTest(unittest.TestCase):
         self.assertTrue(crawler.is_crawled('http://kodemall.com/demo/rohitbegwani123/index.php?route=information/sitemap'))
 
     def test_is_external_link(self):
-        crawler = BugCrawler('http://184.106.134.49/gr8menus/')
+        crawler = BugCrawler('http://dev.lamp/opencart/')
         self.assertTrue(crawler.is_external_link('http://www.google.com'))
         self.assertTrue(crawler.is_external_link('https://www.google.com'))
+
+    def test_is_valid(self):
+        crawler = BugCrawler('http://dev.lamp/opencart/')
+        self.assertTrue(crawler.is_valid('http://dev.lamp/opencart/index.php?route=product/product&path=24&product_id=28'))
+        self.assertFalse(crawler.is_valid('http://dev.lamp/opencart/helloworld.jpg'))
+        
 
     def test_scrap_bugs(self):
         html = """
